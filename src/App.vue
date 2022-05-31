@@ -53,7 +53,12 @@ const handleSendWebform = async () => {
   <div
     class="container max-w-4xl mx-auto flex flex-col gap-4 py-4 min-h-screen"
   >
-    <div class="text-4xl">apiCall テスト</div>
+    <div class="flex">
+      <div class="text-4xl flex-1">apiCall テスト</div>
+      <a target="_blank" href="https://github.com/coji/example-post-form/"
+        >source code</a
+      >
+    </div>
 
     <div class="flex-1 flex gap-4 items-stretch">
       <div class="flex-1 grid grid-cols-1 gap-4 self-start">
@@ -137,6 +142,10 @@ const handleSendWebform = async () => {
             value="https://example-post-form.vercel.app/api/hello"
           />
           <AppParams label="method" value="post" />
+          <AppParams
+            label="headers"
+            :value="JSON.stringify({ 'content-type': 'application/json' })"
+          />
           <AppParams
             label="request_body"
             :value="JSON.stringify(requestBody)"
