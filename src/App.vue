@@ -141,7 +141,7 @@ const handleSendWebform = async () => {
             label="target_api"
             value="https://example-post-form.vercel.app/api/hello"
           />
-          <AppParams label="method" value="post" />
+          <AppParams label="method" value="POST" />
           <AppParams
             label="headers"
             :value="JSON.stringify({ 'content-type': 'application/json' })"
