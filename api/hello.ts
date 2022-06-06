@@ -4,8 +4,12 @@ export default function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
-  response.status(200).json({
-    body: request.body,
-    query: request.query,
-  })
+  if (request.query.response) {
+    response.status(200).send(request.query.response)
+  } else {
+    response.status(200).json({
+      body: request.body,
+      query: request.query,
+    })
+  }
 }

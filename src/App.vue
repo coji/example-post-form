@@ -8,6 +8,7 @@ interface KeyValue {
   value: string
 }
 const keyValues = ref<KeyValue[]>([
+  { key: 'response', value: 'success' },
   { key: '希望店舗', value: '銀座店' },
   { key: '人数', value: '1人' },
   { key: '第1希望', value: '2022/05/31(火)12:00〜14:00' },
@@ -38,14 +39,14 @@ const requestBody = computed(() =>
     return prev
   }, {} as { [key: string]: string })
 )
-const formResult = ref<object | null>()
+const formResult = ref<string | null>()
 const handleSendWebform = async () => {
   formResult.value = null
   formResult.value = await ky
     .post('/api/hello', {
       json: requestBody.value,
     })
-    .json()
+    .text()
 }
 </script>
 
@@ -156,13 +157,7 @@ const handleSendWebform = async () => {
       <div
         class="flex-1 bg-slate-800 text-slate-200 p-4 whitespace-pre overflow-scroll rounded"
       >
-        {{
-          formResult
-            ? JSON.stringify(formResult, null, 2)
-            : formResult !== null
-            ? ''
-            : 'Loading...'
-        }}
+        {{ formResult ? formResult : formResult !== null ? '' : 'Loading...' }}
       </div>
     </div>
   </div>
